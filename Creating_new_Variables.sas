@@ -1,0 +1,11 @@
+PROC IMPORT DATAFILE='/folders/myfolders/Electronic.xlsx'
+				OUT=WORK.Electronic
+				DBMS=XLSX;
+				GETNAMES=YES;
+RUN;
+
+PROC SQL;
+	SELECT PRODUCT, SALES, (SALES*0.5) AS BONUS FROM Electronic
+		WHERE SALES > 200
+		ORDER BY SALES DESC;
+QUIT;
